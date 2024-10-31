@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 
 interface ButtonProps {
   children: React.ReactNode; // not optional?
@@ -8,25 +8,14 @@ interface ButtonProps {
 }
 
 const Button: React.FC<ButtonProps> = ({ children, color }) => {
-  const [isVisible, setIsVisible] = useState(true); // State to track button visibility
-
-  const handleClick = () => {
-    setIsVisible(false); // Hide the button when clicked
-  };
-
   return (
-    <>
-      {isVisible && ( // Render the button only if isVisible is true
-        <button
-          style={{
-            color: color || "purple", // default color
-          }}
-          onClick={handleClick} // Handle the button click
-        >
-          {children}
-        </button>
-      )}
-    </>
+    <button
+      style={{
+        color: color || "black", // default color
+      }}
+    >
+      {children}
+    </button>
   );
 };
 

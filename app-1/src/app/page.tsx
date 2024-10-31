@@ -1,25 +1,39 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import Button from "./components/Button";
+import BoardTile from "./components/BoardTile";
+import Checker from "./components/Checker";
+import TipCalculator from "./components/TipCalculator";
+
+function createBoard() {
+  const rows: JSX.Element[] = [];
+  for (let x = 0; x < 8; x++) {
+    const col: JSX.Element[] = [];
+    for (let y = 0; y < 8; y++) {
+      const color = (x + y) % 2 === 1 ? "black" : "red";
+      col.push(<BoardTile key={`${x},${y}`} color={color} />);
+    }
+    rows.push(...col);
+  }
+  return rows;
+}
 
 export default function Home() {
-  const thing = [
-    { id: "1", text: "1", color: "yellow" },
-    { id: "2", text: "2", color: "blue" },
-    { id: "3", text: "3", color: "black" },
-  ];
-
-  function renderThing() {
-    return thing.map((item) => (
-      <Button key={item.id} color={item.color}>
-        {item.text}
-      </Button>
-    ));
-  }
-
   return (
     <div className={styles.page}>
       <main className={styles.main}>
+        <TipCalculator />
+        {/* <Checker id="checker-1" color="red" initialX={50} initialY={50} />
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(8, 30px)",
+            gridTemplateRows: "repeat(8, 30px)",
+          }}
+        >
+          {createBoard()}
+        </div> */}
+        {/*         
         <Image
           className={styles.logo}
           src="/next.svg"
@@ -38,9 +52,6 @@ export default function Home() {
             <Button color="orange">its an orange button</Button>
           </li>
         </ol>
-
-        {/* Render the buttons here */}
-        <div>{renderThing()}</div>
 
         <div className={styles.ctas}>
           <a
@@ -66,7 +77,7 @@ export default function Home() {
           >
             Read our docs
           </a>
-        </div>
+        </div> */}
       </main>
       <footer className={styles.footer}>
         <a
